@@ -1,18 +1,23 @@
-import { HashTable } from "./hashtable";
+// import { HashTable } from "./hashtable";
 
-const hashtable = new HashTable();
+import { firstRecurringCharacter } from "./utils/first-recurring-character";
 
-hashtable.set("valdir", "32");
-hashtable.set("felipe", "31");
-hashtable.set("lucas", "29");
-hashtable.set("chico", "33");
-hashtable.set("chico", "40");
-hashtable.set("cristina", "61");
-hashtable.set("alberto ma", "22");
-hashtable.set("cristina", "18");
-hashtable.delete("lucassss");
+// const hashtable = new HashTable();
 
-hashtable.debug();
+// hashtable.set("valdir", "32");
+// hashtable.set("felipe", "31");
+// hashtable.set("lucas", "29");
+// hashtable.set("chico", "33");
+// hashtable.set("chico", "40");
+// hashtable.set("cristina", "61");
+// hashtable.set("alberto ma", "22");
+// hashtable.set("cristina", "18");
+// hashtable.delete("lucassss");
 
-console.log(hashtable.get("cristina"));
-console.log(hashtable.keys());
+// hashtable.debug();
+
+// console.log(hashtable.get("cristina"));
+// console.log(hashtable.keys());
+
+const numbers = [1, 2, 3, 4, 5, 8];
+console.log(firstRecurringCharacter(numbers));
