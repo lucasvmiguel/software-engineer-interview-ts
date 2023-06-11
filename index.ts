@@ -1,23 +1,20 @@
-// import { HashTable } from "./hashtable";
+import { DoublyLinkedList } from "./linkedlist/doubly";
 
-import { firstRecurringCharacter } from "./utils/first-recurring-character";
+const linkedList = new DoublyLinkedList();
 
-// const hashtable = new HashTable();
+linkedList.append(3);
+linkedList.append(5);
+linkedList.append(7);
+linkedList.prepend(1);
 
-// hashtable.set("valdir", "32");
-// hashtable.set("felipe", "31");
-// hashtable.set("lucas", "29");
-// hashtable.set("chico", "33");
-// hashtable.set("chico", "40");
-// hashtable.set("cristina", "61");
-// hashtable.set("alberto ma", "22");
-// hashtable.set("cristina", "18");
-// hashtable.delete("lucassss");
+console.log(linkedList.get(1));
 
-// hashtable.debug();
+// linkedList.insert(4, 99);
+linkedList.remove(4);
 
-// console.log(hashtable.get("cristina"));
-// console.log(hashtable.keys());
-
-const numbers = [1, 2, 3, 4, 5, 8];
-console.log(firstRecurringCharacter(numbers));
+linkedList.debug();
+console.log("RESULTS");
+// console.log(linkedList.head?.value);
+// console.log(linkedList.head?.next?.value);
+// console.log(linkedList.head?.next?.next?.value);
+// console.log(linkedList.head?.next?.next?.next?.value);
