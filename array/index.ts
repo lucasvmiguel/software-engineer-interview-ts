@@ -1,6 +1,6 @@
-export default class MyArray {
+export default class MyArray<T> {
   length: number;
-  data: { [index: number]: any };
+  data: { [index: number]: T };
 
   constructor() {
     this.length = 0;
@@ -8,19 +8,19 @@ export default class MyArray {
   }
 
   // O(1)
-  get(index: number): any {
+  get(index: number): T {
     return this.data[index];
   }
 
   // O(1)
-  push(value: any): void {
+  push(value: T): void {
     this.data[this.length] = value;
     this.length++;
   }
 
   // O(1)
-  pop(): any {
-    if (this.length <= 0) return;
+  pop(): T | null {
+    if (this.length <= 0) return null;
 
     const lastValue = this.data[this.length];
 
@@ -30,8 +30,8 @@ export default class MyArray {
   }
 
   // O(n)
-  delete(index: number): any {
-    if (index >= this.length || index < 0) return;
+  delete(index: number): T | null {
+    if (index >= this.length || index < 0) return null;
 
     const itemToRemove = this.data[index];
 

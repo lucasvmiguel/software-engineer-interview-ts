@@ -1,6 +1,6 @@
-export class SinglyLinkedList {
-  head: Node | null;
-  tail: Node | null;
+export class SinglyLinkedList<T> {
+  head: Node<T> | null;
+  tail: Node<T> | null;
   length: number;
 
   constructor() {
@@ -9,7 +9,7 @@ export class SinglyLinkedList {
     this.length = 0;
   }
 
-  append(value: any) {
+  append(value: T) {
     const node = new Node(value);
 
     if (this.head === null || this.tail === null) {
@@ -22,7 +22,7 @@ export class SinglyLinkedList {
     this.length++;
   }
 
-  prepend(value: any) {
+  prepend(value: T) {
     const node = new Node(value);
 
     if (this.head === null || this.tail === null) {
@@ -35,12 +35,12 @@ export class SinglyLinkedList {
     this.length++;
   }
 
-  get(index: number): any {
+  get(index: number): T | null {
     const node = this.getNode(index);
-    return node?.value;
+    return node?.value || null;
   }
 
-  insert(index: number, value: any) {
+  insert(index: number, value: T) {
     if (index === 0) {
       this.prepend(value);
       return;
@@ -72,11 +72,14 @@ export class SinglyLinkedList {
   }
 
   reverse() {
-    const ll = new SinglyLinkedList();
+    const ll = new SinglyLinkedList<T>();
 
     let current = this.head;
     for (let i = 0; i < this.length; i++) {
-      ll.prepend(current?.value);
+      const value = current?.value;
+      if (value) {
+        ll.prepend(value);
+      }
       current = current?.next || null;
     }
 
@@ -85,10 +88,13 @@ export class SinglyLinkedList {
   }
 
   toArray() {
-    const arr: any[] = [];
+    const arr: T[] = [];
     let current = this.head;
     for (let i = 0; i < this.length; i++) {
-      arr.push(current?.value);
+      const value = current?.value;
+      if (value) {
+        arr.push(value);
+      }
       current = current?.next || null;
     }
 
@@ -99,12 +105,12 @@ export class SinglyLinkedList {
     console.log(JSON.stringify(this, null, 2));
   }
 
-  private addFirstNode(node: Node): void {
+  private addFirstNode(node: Node<T>): void {
     this.head = node;
     this.tail = node;
   }
 
-  private getNode(index: number): Node | null {
+  private getNode(index: number): Node<T> | null {
     this.validateIndex(index);
 
     let current = this.head;
@@ -126,11 +132,11 @@ export class SinglyLinkedList {
   }
 }
 
-class Node {
-  value: any;
-  next: Node | null;
+class Node<T> {
+  value: T;
+  next: Node<T> | null;
 
-  constructor(value: any) {
+  constructor(value: T) {
     this.value = value;
     this.next = null;
   }

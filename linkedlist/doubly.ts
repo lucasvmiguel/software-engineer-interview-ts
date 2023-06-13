@@ -1,6 +1,6 @@
-export class DoublyLinkedList {
-  head: Node | null;
-  tail: Node | null;
+export class DoublyLinkedList<T> {
+  head: Node<T> | null;
+  tail: Node<T> | null;
   length: number;
 
   constructor() {
@@ -9,8 +9,8 @@ export class DoublyLinkedList {
     this.length = 0;
   }
 
-  append(value: any) {
-    const node = new Node(value);
+  append(value: T) {
+    const node = new Node<T>(value);
 
     if (this.head === null || this.tail === null) {
       this.addFirstNode(node);
@@ -23,8 +23,8 @@ export class DoublyLinkedList {
     this.length++;
   }
 
-  prepend(value: any) {
-    const node = new Node(value);
+  prepend(value: T) {
+    const node = new Node<T>(value);
 
     if (this.head === null || this.tail === null) {
       this.addFirstNode(node);
@@ -37,12 +37,12 @@ export class DoublyLinkedList {
     this.length++;
   }
 
-  get(index: number): any {
+  get(index: number): T | null {
     const node = this.getNode(index);
-    return node?.value;
+    return node?.value || null;
   }
 
-  insert(index: number, value: any) {
+  insert(index: number, value: T) {
     this.validateIndex(index);
 
     if (index === 0) {
@@ -94,10 +94,10 @@ export class DoublyLinkedList {
     }
   }
 
-  private getNode(index: number): Node | null {
+  private getNode(index: number): Node<T> | null {
     this.validateIndex(index);
 
-    let node: Node | null = this.head;
+    let node: Node<T> | null = this.head;
     for (let i = 0; i < index; i++) {
       node = node?.next || null;
     }
@@ -115,18 +115,18 @@ export class DoublyLinkedList {
     }
   }
 
-  private addFirstNode(node: Node): void {
+  private addFirstNode(node: Node<T>): void {
     this.head = node;
     this.tail = node;
   }
 }
 
-class Node {
-  value: any;
-  next: Node | null;
-  prev: Node | null;
+class Node<T> {
+  value: T;
+  next: Node<T> | null;
+  prev: Node<T> | null;
 
-  constructor(value: any) {
+  constructor(value: T) {
     this.value = value;
     this.next = null;
     this.prev = null;
