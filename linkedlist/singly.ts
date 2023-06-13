@@ -71,6 +71,30 @@ export class SinglyLinkedList {
     this.length--;
   }
 
+  reverse() {
+    const ll = new SinglyLinkedList();
+
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      ll.prepend(current?.value);
+      current = current?.next || null;
+    }
+
+    this.head = ll.head;
+    this.tail = ll.tail;
+  }
+
+  toArray() {
+    const arr: any[] = [];
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      arr.push(current?.value);
+      current = current?.next || null;
+    }
+
+    return arr;
+  }
+
   debug() {
     console.log(JSON.stringify(this, null, 2));
   }
